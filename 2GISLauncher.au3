@@ -1,6 +1,6 @@
-#NoTrayIcon
+п»ї#NoTrayIcon
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#AutoIt3Wrapper_Icon=D:\Soft\AutoIt Script\Скрипты\2GISLauncher\Icon.ico
+#AutoIt3Wrapper_Icon=D:\Soft\AutoIt Script\РЎРєСЂРёРїС‚С‹\2GISLauncher\Icon.ico
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_requestedExecutionLevel=asInvoker
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
@@ -15,41 +15,41 @@ Opt("WinDetectHiddenText", 1)
 Dim $i
 $i = 0
 
-;~ Запускаем карту..
+;~ Р—Р°РїСѓСЃРєР°РµРј РєР°СЂС‚Сѓ..
 Run("grym.exe", @ScriptDir, @SW_HIDE)
 
-;~ Ждем минуту появления первого рекламного окна..
+;~ Р–РґРµРј РјРёРЅСѓС‚Сѓ РїРѕСЏРІР»РµРЅРёСЏ РїРµСЂРІРѕРіРѕ СЂРµРєР»Р°РјРЅРѕРіРѕ РѕРєРЅР°..
 While 1
     Sleep(10)
-    If WinExists("[REGEXPTITLE:.*\Городская информационная система 2ГИС]") Then
-		WinMove("[REGEXPTITLE:.*\Городская информационная система 2ГИС]", "", @DesktopWidth, @DesktopHeight)
-        WinClose("[REGEXPTITLE:.*\Городская информационная система 2ГИС]")  ; и закрываем его при появлении
+    If WinExists("[REGEXPTITLE:.*\Р“РѕСЂРѕРґСЃРєР°СЏ РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР° 2Р“РРЎ]") Then
+		WinMove("[REGEXPTITLE:.*\Р“РѕСЂРѕРґСЃРєР°СЏ РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР° 2Р“РРЎ]", "", @DesktopWidth, @DesktopHeight)
+        WinClose("[REGEXPTITLE:.*\Р“РѕСЂРѕРґСЃРєР°СЏ РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР° 2Р“РРЎ]")  ; Рё Р·Р°РєСЂС‹РІР°РµРј РµРіРѕ РїСЂРё РїРѕСЏРІР»РµРЅРёРё
 		Sleep(100)
-		If Not WinExists("[REGEXPTITLE:.*\Городская информационная система 2ГИС]") Then ExitLoop ; если оно исчезло (проверка) то выходим из этого цикла ожидания
+		If Not WinExists("[REGEXPTITLE:.*\Р“РѕСЂРѕРґСЃРєР°СЏ РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР° 2Р“РРЎ]") Then ExitLoop ; РµСЃР»Рё РѕРЅРѕ РёСЃС‡РµР·Р»Рѕ (РїСЂРѕРІРµСЂРєР°) С‚Рѕ РІС‹С…РѕРґРёРј РёР· СЌС‚РѕРіРѕ С†РёРєР»Р° РѕР¶РёРґР°РЅРёСЏ
     Else
 		if $i = 6000 Then
-			MsgBox(0,"msg", "недождались..") ; недождались - завершаем работу скрипта
+			MsgBox(0,"msg", "РЅРµРґРѕР¶РґР°Р»РёСЃСЊ..") ; РЅРµРґРѕР¶РґР°Р»РёСЃСЊ - Р·Р°РІРµСЂС€Р°РµРј СЂР°Р±РѕС‚Сѓ СЃРєСЂРёРїС‚Р°
 		EndIf
 		$i = $i + 1
     EndIf
 WEnd
 
-;~ Ждем минуту появления последнего рекламного окна..
+;~ Р–РґРµРј РјРёРЅСѓС‚Сѓ РїРѕСЏРІР»РµРЅРёСЏ РїРѕСЃР»РµРґРЅРµРіРѕ СЂРµРєР»Р°РјРЅРѕРіРѕ РѕРєРЅР°..
 While 1
 	Sleep(10)
-    If WinExists("2ГИС") Then
-		WinSetTrans("2ГИС","", 0)
-        WinClose("2ГИС") ; и закрываем его при появлении
+    If WinExists("2Р“РРЎ") Then
+		WinSetTrans("2Р“РРЎ","", 0)
+        WinClose("2Р“РРЎ") ; Рё Р·Р°РєСЂС‹РІР°РµРј РµРіРѕ РїСЂРё РїРѕСЏРІР»РµРЅРёРё
 		Sleep(1000)
-		If Not WinExists("2ГИС") Then
+		If Not WinExists("2Р“РРЎ") Then
 			ProcessClose("2GISTrayNotifier.exe")
-			ExitLoop ; если оно исчезло (проверка) то выходим из этого цикла ожидания
+			ExitLoop ; РµСЃР»Рё РѕРЅРѕ РёСЃС‡РµР·Р»Рѕ (РїСЂРѕРІРµСЂРєР°) С‚Рѕ РІС‹С…РѕРґРёРј РёР· СЌС‚РѕРіРѕ С†РёРєР»Р° РѕР¶РёРґР°РЅРёСЏ
 		EndIf
 	Else
-		if Not WinExists("[REGEXPTITLE:.*\ - 2ГИС]") Then
+		if Not WinExists("[REGEXPTITLE:.*\ - 2Р“РРЎ]") Then
 			Sleep(4000)
-			if Not WinExists("[REGEXPTITLE:.*\ - 2ГИС]") Then
-				ExitLoop ; программа закрыта не корректно - завершаем работу скрипта
+			if Not WinExists("[REGEXPTITLE:.*\ - 2Р“РРЎ]") Then
+				ExitLoop ; РїСЂРѕРіСЂР°РјРјР° Р·Р°РєСЂС‹С‚Р° РЅРµ РєРѕСЂСЂРµРєС‚РЅРѕ - Р·Р°РІРµСЂС€Р°РµРј СЂР°Р±РѕС‚Сѓ СЃРєСЂРёРїС‚Р°
 			EndIf
 		EndIf
     EndIf
