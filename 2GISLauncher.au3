@@ -1,4 +1,9 @@
 #NoTrayIcon
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Icon=D:\Soft\AutoIt Script\Скрипты\2GISLauncher\Icon.ico
+#AutoIt3Wrapper_UseX64=n
+#AutoIt3Wrapper_Res_requestedExecutionLevel=asInvoker
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #cs ----------------------------------------------------------------------------
  AutoIt Version: 3.3.8.1
  Author:         myName
@@ -11,13 +16,13 @@ Dim $i
 $i = 0
 
 ;~ Запускаем карту..
-Run("grym.exe")
+Run("grym.exe", @ScriptDir, @SW_HIDE)
 
 ;~ Ждем минуту появления первого рекламного окна..
 While 1
     Sleep(10)
     If WinExists("[REGEXPTITLE:.*\Городская информационная система 2ГИС]") Then
-		WinSetTrans("[REGEXPTITLE:.*\Городская информационная система 2ГИС]","", 0)
+		WinMove("[REGEXPTITLE:.*\Городская информационная система 2ГИС]", "", @DesktopWidth, @DesktopHeight)
         WinClose("[REGEXPTITLE:.*\Городская информационная система 2ГИС]")  ; и закрываем его при появлении
 		Sleep(100)
 		If Not WinExists("[REGEXPTITLE:.*\Городская информационная система 2ГИС]") Then ExitLoop ; если оно исчезло (проверка) то выходим из этого цикла ожидания
@@ -37,6 +42,7 @@ While 1
         WinClose("2ГИС") ; и закрываем его при появлении
 		Sleep(1000)
 		If Not WinExists("2ГИС") Then
+			ProcessClose("2GISTrayNotifier.exe")
 			ExitLoop ; если оно исчезло (проверка) то выходим из этого цикла ожидания
 		EndIf
 	Else
